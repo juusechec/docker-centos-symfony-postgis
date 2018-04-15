@@ -50,5 +50,5 @@ if [ -f /etc/php.ini.bak ]
 then
   echo 'php.ini.bak ya existe. Nada que hacer.'
 else
-  sudo sed -i.bak '/^;date.timezone =$/s:$:\ndate.timezone = "America/Bogota";:' /etc/php.ini
+  $SUDO sed -i.bak '/^;date.timezone =$/s:$:\ndate.timezone = "America/Bogota";:' /etc/php.ini
 fi

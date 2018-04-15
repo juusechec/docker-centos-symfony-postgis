@@ -2,14 +2,19 @@ version: '3'
 services:
   app:
     build: .
+    #privileged: true # obligatory for centos systemd!
     environment:
-      - SCRIPT_ON_RUN="/example-script-on-run.sh"
+      - SCRIPT_ON_RUN="/srcipts/example-script-on-run.sh"
       - POSTGRES_USER="usuario_ladm_col"
       - POSTGRES_PASS="clave_ladm_col"
       - POSTGRES_DBNAME="ladm_col"
     ports:
-      - "8000:8000"
-      - "5432:5432"
+      - 8000:8000
+      - 5432:5432
     volumes:
-      - ./src:/var/www/html
-      - ./scripts:/scripts
+      # obligatory for centos systemd https://github.com/solita/docker-systemd/issues/1
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      # specific
+      - ./src:/var/www/html:ro
+      - ./scripts:/scripts:ro
+      - ./sql:/sql:ro

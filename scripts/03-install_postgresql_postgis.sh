@@ -19,8 +19,11 @@ $SUDO sed -i.bak 's/peer/trust/; s/ident/md5/' /var/lib/pgsql/9.5/data/pg_hba.co
 $SUDO tee -a /var/lib/pgsql/9.5/data/pg_hba.conf << 'EOF'
 host    all             all             0.0.0.0/0               md5
 EOF
-$SUDO systemctl start postgresql-9.5.service
 echo "Se ha terminado la instalación de Postgresql"
+
+# rationale: iniciar postgres
+#$SUDO systemctl start postgresql-9.5.service
+
 #if you what remove # yum erase postgresql95*
 cat << 'EOF'
 # ¿Cómo crear un usuario y una base de datos?
@@ -36,7 +39,7 @@ host    all             all             127.0.0.1/32            md5
 host    all             all             localhost               md5
 host    all             all             0.0.0.0/0               md5
 host    all             all             ::1/128                 md5#sara
-$ $SUDO systemctl restart postgresql-9.5.service
+$ sudo systemctl restart postgresql-9.5.service
 EOF
 echo "Instalando Postgis"
 $SUDO yum install -y epel-release

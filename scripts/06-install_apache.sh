@@ -75,4 +75,4 @@ EOF
 fi
 
 # rationale: iniciar apache
-$SUDO systemctl start httpd
+#$SUDO systemctl start httpd

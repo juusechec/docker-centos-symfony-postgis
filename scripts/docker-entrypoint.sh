@@ -14,7 +14,12 @@ do
 done
 
 echo "/usr/sbin/init ready!"
+
+if [ -z "$SCRIPT_ON_RUN" ]; then
+  SCRIPT_ON_RUN=''
+fi
 $SCRIPT_ON_RUN
+
 journalctl -f
 }
 

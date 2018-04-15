@@ -34,4 +34,5 @@ else
   $SUDO sed -i.bak 's/.port =.*/.port = "8080";/' $file
 fi
 
-systemctl start varnish
+# rationale: iniciar varnish
+#systemctl start varnish
