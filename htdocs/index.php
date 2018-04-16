@@ -25,6 +25,13 @@ pg_free_result($result);
 // Closing connection
 pg_close($dbconn);
 
+// read and write file test
+$fh = fopen('test.html', 'a');
+fwrite($fh, '<h1>Hello world!</h1>');
+fclose($fh);
+// delete
+unlink('test.html');
+
 echo '<h1>Show phpinfo</h1>';
 
 phpinfo();

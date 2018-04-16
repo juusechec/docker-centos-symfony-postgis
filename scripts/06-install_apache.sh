@@ -25,8 +25,8 @@ then
   echo "El archivo $file ya existe. Nada que hacer."
 else
   $SUDO tee $file << 'EOF'
-Alias "/" "/app/"
-<Directory "/app/">
+Alias "/" "/htdocs/"
+<Directory "/htdocs/">
     Options Indexes FollowSymlinks MultiViews
     AllowOverride All
     Require all granted
@@ -41,8 +41,8 @@ then
   echo "El archivo $file ya existe. Nada que hacer."
 else
   $SUDO tee $file << 'EOF'
-User apache
-Group apache
+User appuser
+Group appuser
 EOF
 fi
 

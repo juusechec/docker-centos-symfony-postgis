@@ -20,6 +20,12 @@ RUN /scripts/07-install_varnish.sh
 RUN yum clean all
 RUN rm -rf /var/cache/yum
 
-EXPOSE 8080
-EXPOSE 5432
+#EXPOSE 5432
+#EXPOSE 8080
+#EXPOSE 80
+
+RUN groupadd -g 1000 appuser && \
+    useradd -r -u 1000 -g appuser appuser
+USER appuser
+
 CMD ["sh", "/scripts/docker-entrypoint.sh"]
