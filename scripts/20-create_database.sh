@@ -61,5 +61,5 @@ SELECT postgis_full_version();
 EOF
   fi
   $SUDO chown postgres:postgres "$file"
-  $SUDO su postgres -c "psql ${DATABASE_PORT} -f $file"
+  $SUDO su postgres -c "psql -p ${DATABASE_PORT} -f $file"
 fi

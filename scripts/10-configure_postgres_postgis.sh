@@ -15,7 +15,7 @@ fi
 $SUDO /usr/pgsql-9.5/bin/postgresql95-setup initdb
 
 # rationale: enable service
-$SUDO systemctl enable postgresql-9.5
+$SUDO systemctl enable postgresql-9.5.service
 
 # rationale: allow password authentication
 $SUDO sed -i.bak 's/peer/trust/; s/ident/md5/' /var/lib/pgsql/9.5/data/pg_hba.conf

@@ -6,16 +6,16 @@ services:
     environment:
       - SCRIPT_ON_RUN="/scripts/example-script-on-run.sh" # optional
       #- DATABASE_HOST="localhost"
-      - DATABASE_PORT="15432"
-      - DATABASE_NAME="sigma4c"
-      - DATABASE_USER="sigma4c"
-      - DATABASE_PASSWORD="abc123"
-      - WEBSERVER_PORT="8008"
-      - VARNISH_PORT="8009"
+      - DATABASE_PORT=5433
+      - DATABASE_NAME=db_test
+      - DATABASE_USER=user_db
+      - DATABASE_PASSWORD=abc123
+      - WEBSERVER_PORT=82
+      - VARNISH_PORT=81
     ports:
-      - 8008:8008
-      - 8009:8009
-      - 15432:15432
+      - 81:81
+      - 82:82
+      - 5431:5431
     volumes:
       # obligatory for centos systemd https://github.com/solita/docker-systemd/issues/1
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
