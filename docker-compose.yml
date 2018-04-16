@@ -22,4 +22,4 @@ services:
       # specific
       - ./src:/app:ro
       - ./scripts:/scripts:ro
-      - ./sql:/sql:ro
+      #- ./sql:/sql:ro
