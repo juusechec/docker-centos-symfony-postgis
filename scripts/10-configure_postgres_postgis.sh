@@ -33,7 +33,7 @@ then
   echo "$file ya está configurado, nada que hacer."
 else
   $SUDO sed -i.bak "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "$file"
-  $SUDO sed -i "s/#port = 5432/#port = ${DATABASE_PORT}/" "$file"
+  $SUDO sed -i "s/#port = 5432/port = ${DATABASE_PORT}/" "$file"
 fi
 
 # rationale: start service
