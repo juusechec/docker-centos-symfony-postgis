@@ -21,7 +21,7 @@ else
 $SUDO chown postgres:postgres ${SQL_OUTSIDE_DB} ${SQL_INSIDE_DB}
 $SUDO su postgres -c "
 cd /tmp
-psql -f ${SQL_OUTSIDE_DB}
-psql -f ${SQL_INSIDE_DB} -d ${DB_NAME}
+psql -p 5432 -f ${SQL_OUTSIDE_DB}
+psql -p 5432 -f ${SQL_INSIDE_DB} -d ${DB_NAME}
 "
 EOF

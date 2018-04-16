@@ -7,6 +7,11 @@ if [ -z "$SUDO" ]; then
 fi
 
 # rationale: set a defaults
+if [ -z "$DATABASE_PORT" ]; then
+  DATABASE_PORT='5432'
+fi
+
+# rationale: set a defaults
 if [ -z "$DATABASE_NAME" ]; then
   DATABASE_NAME='db_name'
 fi
@@ -22,7 +27,7 @@ if [ -z "$DATABASE_PASSWORD" ]; then
 fi
 
 # rationale: check created db
-if $SUDO su postgres -c "psql -l" | grep "^ ${DATABASE_NAME}\b" &>/dev/null
+if $SUDO su postgres -c "psql -p ${DATABASE_PORT} -l" | grep "^ ${DATABASE_NAME}\b" &>/dev/null
 then
   echo 'La base de datos ya está creada. Nada que hacer.'
 else
@@ -56,5 +61,5 @@ SELECT postgis_full_version();
 EOF
   fi
   $SUDO chown postgres:postgres "$file"
-  $SUDO su postgres -c "psql -f $file"
+  $SUDO su postgres -c "psql ${DATABASE_PORT} -f $file"
 fi

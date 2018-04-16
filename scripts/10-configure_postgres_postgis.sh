@@ -7,7 +7,6 @@ if [ -z "$SUDO" ]; then
 fi
 
 # rationale: set a defaults
-# PLEASE, USE IN THE FUTURE
 if [ -z "$DATABASE_PORT" ]; then
   DATABASE_PORT='5432'
 fi
