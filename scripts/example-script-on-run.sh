@@ -24,4 +24,5 @@ cd /tmp
 psql -p 5432 -f ${SQL_OUTSIDE_DB}
 psql -p 5432 -f ${SQL_INSIDE_DB} -d ${DB_NAME}
 "
+fi
 EOF
