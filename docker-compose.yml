@@ -10,7 +10,7 @@ services:
       - DATABASE_NAME=db_test
       - DATABASE_USER=user_db
       - DATABASE_PASSWORD=abc123
-      - WEBSERVER_PATH=/htdocs/
+      - WEBSERVER_PATH=/htdocs/ # use ending "/" mandatory
       - WEBSERVER_PORT=82
       - VARNISH_PORT=81
     ports:
