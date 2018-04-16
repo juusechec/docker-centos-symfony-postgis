@@ -1,6 +1,14 @@
 # docker-centos-symfony-postgis
 
-# Construct and upload
+## Used software
+- POSTGRES 9.5 + POSTGIS 2.95
+- Apache
+- PHP 71
+- Composer
+- Symfony Binary
+- Varnish
+
+## Construct and upload
 ```
 $ docker build -t juusechec/centos-symfony-postgis:latest . -f Dockerfile
 $ docker login

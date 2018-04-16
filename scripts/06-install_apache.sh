@@ -34,15 +34,15 @@ Alias "/" "/app/"
 EOF
 fi
 
-# rationale: dar permisos al servidor web para acceder como usuario vagrant
+# rationale: dar permisos al servidor web para acceder como usuario apache U otro
 file=/etc/httpd/conf.d/40-permisos.conf
 if [ -f $file ]
 then
   echo "El archivo $file ya existe. Nada que hacer."
 else
   $SUDO tee $file << 'EOF'
-User vagrant
-Group vagrant
+User apache
+Group apache
 EOF
 fi
 
