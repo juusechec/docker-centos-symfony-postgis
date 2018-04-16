@@ -21,6 +21,7 @@ fi
 /scripts/10-configure_postgres_postgis.sh
 /scripts/20-create_database.sh
 /scripts/30-configure_apache.sh
+/scripts/40-configure_varnish.sh
 eval $SCRIPT_ON_RUN
 
 journalctl -f

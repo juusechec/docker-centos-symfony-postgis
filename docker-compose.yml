@@ -11,8 +11,10 @@ services:
       - DATABASE_USER="sigma4c"
       - DATABASE_PASSWORD="abc123"
       - WEBSERVER_PORT="8008"
+      - VARNISH_PORT="8009"
     ports:
       - 8008:8008
+      - 8009:8009
       - 15432:15432
     volumes:
       # obligatory for centos systemd https://github.com/solita/docker-systemd/issues/1

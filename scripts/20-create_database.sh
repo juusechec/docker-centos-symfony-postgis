@@ -32,7 +32,7 @@ else
   then
     echo "El archivo $file ya existe. Nada que hacer."
   else
-    $SUDO tee $file << EOF
+    $SUDO tee "$file" << EOF
 DROP ROLE IF EXISTS ${DATABASE_USER};
 CREATE ROLE ${DATABASE_USER} WITH
         INHERIT
@@ -55,6 +55,6 @@ CREATE EXTENSION postgis_topology;
 SELECT postgis_full_version();
 EOF
   fi
-  $SUDO chown postgres:postgres $file
+  $SUDO chown postgres:postgres "$file"
   $SUDO su postgres -c "psql -f $file"
 fi

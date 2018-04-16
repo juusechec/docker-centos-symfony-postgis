@@ -13,25 +13,7 @@ then
 else
   $SUDO yum install -y epel-release
   $SUDO yum install -y varnish
-  $SUDO systemctl enable varnish
-fi
-
-# rationale: verificando instalacion varnish
-file=/etc/varnish/varnish.params
-if egrep '^VARNISH_LISTEN_PORT=80' $file &> /dev/null
-then
-  echo "$file ya está configurado, nada que hacer."
-else
-  $SUDO sed -i.bak 's/^VARNISH_LISTEN_PORT=.*/VARNISH_LISTEN_PORT=80/' $file
-fi
-
-# rationale: verificando instalacion varnish
-file=/etc/varnish/default.vcl
-if egrep '.*.port = "8080";' $file &> /dev/null
-then
-  echo "$file ya está configurado, nada que hacer."
-else
-  $SUDO sed -i.bak 's/.port =.*/.port = "8080";/' $file
+  $SUDO systemctl enable varnish.service
 fi
 
 # rationale: iniciar varnish

@@ -8,12 +8,18 @@ fi
 
 # rationale: set a defaults
 if [ -z "$WEBSERVER_PORT" ]; then
-  WEBSERVER_PORT='80'
+  WEBSERVER_PORT='8080'
 fi
 
 # change listen port
-$SUDO sed -i.bak "s/^Listen .*/Listen ${WEBSERVER_PORT}/" /etc/httpd/conf/httpd.conf
-egrep '^Listen=' /etc/httpd/conf/httpd.conf
+file=/etc/httpd/conf/httpd.conf
+if egrep "^Listen ${WEBSERVER_PORT}" "$file" &> /dev/null
+then
+  echo "$file ya está configurado, nada que hacer."
+else
+  $SUDO sed -i.bak "s/^Listen .*/Listen ${WEBSERVER_PORT}/" "$file"
+  egrep '^Listen=' "$file"
+fi
 
 # rationale: start service
 $SUDO systemctl restart httpd.service

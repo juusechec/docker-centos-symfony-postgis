@@ -12,7 +12,7 @@ then
   echo 'HTTPD ya está instalado, nada que hacer.'
 else
   $SUDO yum install -y httpd
-  $SUDO systemctl enable httpd
+  $SUDO systemctl enable httpd.service
   # change listen port
   #$SUDO sed -i.bak 's/^Listen .*/Listen 8008/' /etc/httpd/conf/httpd.conf
   #egrep '^Listen=' /etc/httpd/conf/httpd.conf

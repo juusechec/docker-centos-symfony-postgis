@@ -25,8 +25,16 @@ $SUDO sed -i.bak 's/peer/trust/; s/ident/md5/' /var/lib/pgsql/9.5/data/pg_hba.co
 $SUDO tee -a /var/lib/pgsql/9.5/data/pg_hba.conf << 'EOF'
 host    all             all             0.0.0.0/0               md5
 EOF
-# rationale: allow listen address for all hostname
-$SUDO sed -i.bak "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /var/lib/pgsql/9.5/data/postgresql.conf
-$SUDO sed -i "s/#port = 5432/#port = ${DATABASE_PORT}/" /var/lib/pgsql/9.5/data/postgresql.conf
+
+# rationale: allow listen address for all hostname, change port
+file=/var/lib/pgsql/9.5/data/postgresql.conf
+if egrep "^listen_addresses = '*'" "$file" &> /dev/null
+then
+  echo "$file ya está configurado, nada que hacer."
+else
+  $SUDO sed -i.bak "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "$file"
+  $SUDO sed -i "s/#port = 5432/#port = ${DATABASE_PORT}/" "$file"
+fi
+
 # rationale: start service
 $SUDO systemctl restart postgresql-9.5.service
