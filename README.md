@@ -21,3 +21,6 @@ docker-compose up
 # get command shell
 docker-compose exec app bash
 ```
+
+## Projects that use this container
+- Sigma4C https://github.com/juusechec/sigma4c/blob/master/docker-compose.yml
