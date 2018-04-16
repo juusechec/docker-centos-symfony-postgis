@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 echo 'Ejecutando: set_permisive.sh'
 
 # rationale: set a default sudo
@@ -13,7 +13,7 @@ else
 #rationale: deshabilita y detiene Firewalld
 #SUDO=sudo
 $SUDO systemctl disable firewalld
-$SUDO systemctl stop firewalld
+#$SUDO systemctl stop firewalld
 
 echo 'Configurando SELINUX'
 if type setenforce &>/dev/null && [ "$(getenforce)" != "Disabled" ]
