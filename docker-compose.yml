@@ -20,6 +20,5 @@ services:
       # obligatory for centos systemd https://github.com/solita/docker-systemd/issues/1
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       # specific
-      - ./htdocs:/htdocs:ro
       - ./scripts:/scripts:ro
-      #- ./sql:/sql:ro
+      - ./htdocs:/htdocs

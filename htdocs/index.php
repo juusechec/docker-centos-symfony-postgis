@@ -26,11 +26,25 @@ pg_free_result($result);
 pg_close($dbconn);
 
 // read and write file test
-$fh = fopen('test.html', 'a');
-fwrite($fh, '<h1>Hello world!</h1>');
+$file = 'test.html';
+$fh = fopen($file, 'a');
+if (!fwrite($fh, '<h1>Hello world!</h1>')) {
+    echo "Error to write $file...\n";
+}
 fclose($fh);
+// copy
+$new_file = 'test.html.bak';
+if (!copy($file, $new_file)) {
+    echo "Error to copy $file...\n";
+}
 // delete
-unlink('test.html');
+if (!unlink($file)) {
+    echo "Error to delete $file...\n";
+}
+// delete
+if (!unlink($new_file)) {
+    echo "Error to delete $new_file...\n";
+}
 
 echo '<h1>Show phpinfo</h1>';
 

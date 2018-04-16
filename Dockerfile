@@ -26,6 +26,6 @@ RUN rm -rf /var/cache/yum
 
 RUN groupadd -g 1000 appuser && \
     useradd -r -u 1000 -g appuser appuser
-USER appuser
+#USER appuser
 
 CMD ["sh", "/scripts/docker-entrypoint.sh"]
