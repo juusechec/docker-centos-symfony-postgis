@@ -18,7 +18,10 @@ echo "/usr/sbin/init ready!"
 if [ -z "$SCRIPT_ON_RUN" ]; then
   SCRIPT_ON_RUN=''
 fi
-$SCRIPT_ON_RUN
+/scripts/10-configure_postgres_postgis.sh
+/scripts/20-create_database.sh
+/scripts/30-configure_apache.sh
+eval $SCRIPT_ON_RUN
 
 journalctl -f
 }

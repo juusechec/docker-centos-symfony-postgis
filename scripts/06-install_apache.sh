@@ -14,8 +14,24 @@ else
   $SUDO yum install -y httpd
   $SUDO systemctl enable httpd
   # change listen port
-  $SUDO sed -i.bak 's/^Listen .*/Listen 8080/' /etc/httpd/conf/httpd.conf
-  egrep '^Listen=' /etc/httpd/conf/httpd.conf
+  #$SUDO sed -i.bak 's/^Listen .*/Listen 8008/' /etc/httpd/conf/httpd.conf
+  #egrep '^Listen=' /etc/httpd/conf/httpd.conf
+fi
+
+# rationale: configurar symfony como raiz de apache
+file=/etc/httpd/conf.d/30-application.conf
+if [ -f $file ]
+then
+  echo "El archivo $file ya existe. Nada que hacer."
+else
+  $SUDO tee $file << 'EOF'
+Alias "/" "/app/"
+<Directory "/app/">
+    Options Indexes FollowSymlinks MultiViews
+    AllowOverride All
+    Require all granted
+</Directory>
+EOF
 fi
 
 # rationale: dar permisos al servidor web para acceder como usuario vagrant
@@ -27,22 +43,6 @@ else
   $SUDO tee $file << 'EOF'
 User vagrant
 Group vagrant
-EOF
-fi
-
-# rationale: configurar symfony como raiz de apache
-file=/etc/httpd/conf.d/sigma4c.conf
-if [ -f $file ]
-then
-  echo "El archivo $file ya existe. Nada que hacer."
-else
-  $SUDO tee $file << 'EOF'
-Alias "/" "/home/vagrant/src/sigma4c/web/"
-<Directory "/home/vagrant/src/sigma4c/web/">
-    Options Indexes FollowSymlinks MultiViews
-    AllowOverride All
-    Require all granted
-</Directory>
 EOF
 fi
 
@@ -62,14 +62,12 @@ ExtendedStatus on
     Order deny,allow
     Deny from all
     Allow from all
-    #Allow from 192.168.69.69
 </Location>
 <Location /server-info>
     SetHandler server-info
     Order deny,allow
     Deny from all
     Allow from all
-    #Allow from 192.168.69.69
 </Location>
 EOF
 fi

@@ -27,4 +27,11 @@ then
   egrep '^SELINUX=' /etc/selinux/config
 fi
 
+
+# rationale: add port of postgres to firewall rules public
+#$SUDO firewall-cmd --zone=public --add-port=5432/tcp --permanent
+#$SUDO firewall-cmd --zone=public --add-port=8080/tcp --permanent
+#$SUDO firewall-cmd --zone=public --add-port=80/tcp --permanent
+#$SUDO firewall-cmd --reload
+
 fi
