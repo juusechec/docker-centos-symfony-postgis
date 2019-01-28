@@ -11,6 +11,7 @@
 ## Construct and upload
 ```
 $ docker build -t juusechec/centos-symfony-postgis:latest . -f Dockerfile
+$ # docker --no-cache build -t juusechec/centos-symfony-postgis:latest . -f Dockerfile # for no cache
 $ docker login
 $ docker push juusechec/centos-symfony-postgis:latest
 ```
