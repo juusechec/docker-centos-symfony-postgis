@@ -6,7 +6,7 @@ if [ -z "$SUDO" ]; then
   SUDO=''
 fi
 
-list=(vim git nmap tree wget)
+list=(vim git nmap tree wget unzip)
 install=installed
 for p in ${list[*]}
 do
